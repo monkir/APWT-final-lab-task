@@ -59,12 +59,17 @@ export class EmployeeService {
         //return "employee trying to find customer with id: "+findCustomerDto.id;
         return this.custRepo.find()
     }
+    showbusowners():any
+    {
+        //return "employee trying to find customer with id: "+findCustomerDto.id;
+        return this.busRepo.find()
+    }
     findcustomer(findCustomerDto):any
     {
         //return "employee trying to find customer with id: "+findCustomerDto.id;
         return this.custRepo.findOneBy({id:findCustomerDto.id});
     }
-    findbusprovider(findBusProviderDTO):any
+    findbusowner(findBusProviderDTO):any
     {
         //return "employee trying to find bus provider with id: "+findBusProviderDTO.id;
         return this.busRepo.findOneBy({id:findBusProviderDTO.id})

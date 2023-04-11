@@ -1,5 +1,5 @@
-import MyLayout from "../component/layout"
-import Header from "../component/header"
+import MyLayout from "../../component/layout"
+import Header from "../../component/header"
 import Link from "next/link"
 
 export default function mngCustomers({data}) {
@@ -8,7 +8,7 @@ export default function mngCustomers({data}) {
     
     <MyLayout title="Manage Customers"/>
     <div>
-      <Link href={"manage-customer/add-customer"}>Add Customer</Link>
+      <Link href={"/employee/manage-customer/add-customer"}>Add Customer</Link>
       <table>
         <tbody>
           <tr>
@@ -45,8 +45,24 @@ export default function mngCustomers({data}) {
 
 export async function getServerSideProps() {
    
-  const response = await fetch('http://localhost:3000/employee/showcustomers');
+  const response = await fetch('http://localhost:3000/employee/showbusowners');
   const data = await response.json();
+  // const data=[
+  //   {
+  //     'id':1,
+  //     'name':'Mahmud',
+  //     'email':'mahmud@gamil.com',
+  //     'phone':'065165165',
+  //     'address':'Motijheel'
+  //   },
+  //   {
+  //     'id':2,
+  //     'name':'Akash',
+  //     'email':'akash@gamil.com',
+  //     'phone':'0465165465',
+  //     'address':'Kuril'
+  //   }
+  // ]
 
 return { props: { data } }
 }

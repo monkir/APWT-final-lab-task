@@ -1,3 +1,4 @@
+import { busownerEntity } from "src/busowner/busowner.entity";
 import { customerEntity } from "src/customer/customer.entity";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -27,4 +28,7 @@ export class employeeEntity
 
     @OneToMany(()=>customerEntity, (customerEntity)=>customerEntity.employee)
     customers: customerEntity[];
+
+    @OneToMany(()=>busownerEntity, (busownerEntity)=>busownerEntity.employee)
+    busowners: busownerEntity[];
 }

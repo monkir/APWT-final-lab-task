@@ -6,15 +6,10 @@ export default function Home() {
   return (
     <>
   
-    <MyLayout title="Home"/>
+    <MyLayout title="Bus Ticketing System Home Page"/>
 
     <h1>Home Page</h1>
     <h3>Loren Posem .....</h3>
-    <ul >
-        {names.map((name) => (
-          <li key={name}>{name}</li>
-        ))}
-      </ul>
 
     </>
   )

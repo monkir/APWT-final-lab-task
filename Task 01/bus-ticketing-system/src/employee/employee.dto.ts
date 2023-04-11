@@ -34,6 +34,12 @@ export class findcustomerForm
    @IsInt()
     id: string;
 }
+export class findbusownerForm 
+{   
+   @IsNotEmpty()
+   @IsInt()
+    id: string;
+}
 export class findBusProviderForm 
 {   
    @IsNotEmpty()
