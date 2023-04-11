@@ -28,10 +28,13 @@ export default function mngCustomers({data}) {
               <td>{item.email}</td>
               <td>{item.phone}</td>
               <td>{item.address}</td>
+              {/* <td>{item.account}</td>
+              <td>{item.address}</td> */}
               {/* <td>{item.profile}</td> */}
               <td><Link href={"#"}>Edit</Link></td>
               <td><Link href={"#"}>Block</Link></td>
               <td><Link href={"#"}>Delete</Link></td>
+              <td><Link href={"#"}>View</Link></td>
             </tr>
             </>
           ))}
@@ -45,7 +48,7 @@ export default function mngCustomers({data}) {
 
 export async function getServerSideProps() {
    
-  const response = await fetch('http://localhost:3000/employee/showcustomers');
+  const response = await fetch('http://localhost:3000/employee/showbusowners');
   const data = await response.json();
   // const data=[
   //   {

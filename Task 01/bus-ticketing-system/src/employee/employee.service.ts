@@ -62,7 +62,7 @@ export class EmployeeService {
     showbusowners():any
     {
         //return "employee trying to find customer with id: "+findCustomerDto.id;
-        return this.busRepo.find()
+        return this.busRepo.find();
     }
     findcustomer(findCustomerDto):any
     {
@@ -83,6 +83,7 @@ export class EmployeeService {
           result += characters.charAt(Math.floor(Math.random() * charactersLength));
           counter += 1;
         }
+        console.log("Password: "+result);
         return result;
     }
     async addcustomer(addCustomerDTO):Promise<any>
@@ -95,17 +96,17 @@ export class EmployeeService {
        const salt = await bcrypt.genSalt();
         const hash = await bcrypt.hash(pass,salt);
         addCustomerDTO.password=hash;
-        await this.mailerService.sendMail({
-            to: addCustomerDTO.email,
-            subject: 'Password of your account in Bus Ticketing System',
-            text: 'Welcome to Bus Ticketing System\n'+
-                'Your account is: '+addCustomerDTO.email+'\n'+
-                'Your password is: '+pass+
-                'Your name is: '+addCustomerDTO.name+
-                'Your phone is: '+addCustomerDTO.phone+
-                'Your address is: '+addCustomerDTO.address+
-                'Your employee is: '+addCustomerDTO.employee
-        })
+        // await this.mailerService.sendMail({
+        //     to: addCustomerDTO.email,
+        //     subject: 'Password of your account in Bus Ticketing System',
+        //     text: 'Welcome to Bus Ticketing System\n'+
+        //         'Your account is: '+addCustomerDTO.email+'\n'+
+        //         'Your password is: '+pass+
+        //         'Your name is: '+addCustomerDTO.name+
+        //         'Your phone is: '+addCustomerDTO.phone+
+        //         'Your address is: '+addCustomerDTO.address+
+        //         'Your employee is: '+addCustomerDTO.employee
+        // })
         return this.custRepo.insert(addCustomerDTO)
     }
     async updatecustomer(updateCustomerDTO):Promise<any>
@@ -117,17 +118,17 @@ export class EmployeeService {
        const salt = await bcrypt.genSalt();
         const hash = await bcrypt.hash(pass,salt);
         updateCustomerDTO.password=hash;
-        await this.mailerService.sendMail({
-            to: updateCustomerDTO.email,
-            subject: 'Updated Password of your account in Bus Ticketing System',
-            text: 'Welcome to Bus Ticketing System\n'+
-                'Your account is: '+updateCustomerDTO.email+'\n'+
-                'Your password is: '+pass+
-                'Your name is: '+updateCustomerDTO.name+
-                'Your phone is: '+updateCustomerDTO.phone+
-                'Your address is: '+updateCustomerDTO.address+
-                'Your employee is: '+updateCustomerDTO.employee
-        })
+        // await this.mailerService.sendMail({
+        //     to: updateCustomerDTO.email,
+        //     subject: 'Updated Password of your account in Bus Ticketing System',
+        //     text: 'Welcome to Bus Ticketing System\n'+
+        //         'Your account is: '+updateCustomerDTO.email+'\n'+
+        //         'Your password is: '+pass+
+        //         'Your name is: '+updateCustomerDTO.name+
+        //         'Your phone is: '+updateCustomerDTO.phone+
+        //         'Your address is: '+updateCustomerDTO.address+
+        //         'Your employee is: '+updateCustomerDTO.employee
+        // })
         console.log('test')
         return this.custRepo.update(updateCustomerDTO.id, updateCustomerDTO)
     }
@@ -136,10 +137,15 @@ export class EmployeeService {
         //return "Employee is deleting a customer with id: "+deleteCustomerDTO.id
         return this.custRepo.delete(deleteCustomerDTO.id)
     }
-    addbusowner(addbusownerDTO):any
+    async addbusowner(addbusownerDTO):Promise<any>
     {
-        return "Employee is adding a bus owner with name: "+addbusownerDTO.name
-        +" brta-license: "+addbusownerDTO.brtalicense
+        // return "Employee is adding a bus owner with name: "+addbusownerDTO.name
+        // +" brta-license: "+addbusownerDTO.brtalicense
+        const pass = this.makepass(8)
+       const salt = await bcrypt.genSalt();
+        const hash = await bcrypt.hash(pass,salt);
+        addbusownerDTO.password=hash;
+        return this.busRepo.insert(addbusownerDTO)
     }
     updatebusowner(updatebusownerDTO):any
     {

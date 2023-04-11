@@ -65,7 +65,7 @@ export class EmployeeController {
     @UseGuards(sessionGuard)
     showcustomes():any
     {
-        return this.employeeService.showbusowners();
+        return this.employeeService.showcustomers();
     }
     //find customer
     @Get("findcustomer/:id")
@@ -75,13 +75,14 @@ export class EmployeeController {
         return this.employeeService.findcustomer(findCustomerDto);
     }
 
+    
 /////////////////////////////////
     //find busowner
     @Get("showbusowners")
     @UseGuards(sessionGuard)
     showbusowners():any
     {
-        return this.employeeService.showcustomers();
+        return this.employeeService.showbusowners();
     }
     //find customer
     @Get("findbusowner/:id")
