@@ -31,12 +31,6 @@ export class loginForm
 export class findcustomerForm 
 {   
    @IsNotEmpty()
-   @IsNumberString()
-    id: string;
-}
-export class findbusownerForm 
-{   
-   @IsNotEmpty()
    @IsInt()
     id: string;
 }
@@ -105,7 +99,7 @@ export class addbusownerForm
     
     @IsNotEmpty()
     @IsEmail()
-    email: string;
+    eamil: string;
 
     @IsNotEmpty()
     @IsNumberString()

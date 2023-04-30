@@ -2,10 +2,10 @@
 https://docs.nestjs.com/controllers#controllers
 */
 
-import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards, UsePipes,Session, ValidationPipe, UnauthorizedException, UseInterceptors, UploadedFile, ParseFilePipe, MaxFileSizeValidator, FileTypeValidator, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards, UsePipes,Session, ValidationPipe, UnauthorizedException, UseInterceptors, UploadedFile, ParseFilePipe, MaxFileSizeValidator, FileTypeValidator } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
-import { addbusownerForm, addCustomerForm, deleteCustomerForm, findbusownerForm, findcustomerForm, loginForm, signupForm, updatebusownerForm, updateCustomerForm } from './employee.dto';
+import { addbusownerForm, addCustomerForm, deleteCustomerForm, findcustomerForm, loginForm, signupForm, updatebusownerForm, updateCustomerForm } from './employee.dto';
 import { sessionGuard } from './employee.guard';
 import { EmployeeService } from './employee.service';
 
@@ -74,25 +74,6 @@ export class EmployeeController {
     {
         return this.employeeService.findcustomer(findCustomerDto);
     }
-
-    
-/////////////////////////////////
-    //find busowner
-    @Get("showbusowners")
-    @UseGuards(sessionGuard)
-    showbusowners():any
-    {
-        return this.employeeService.showbusowners();
-    }
-    //find customer
-    @Get("findbusowner/:id")
-    @UsePipes(new ValidationPipe())
-    findbusowner(@Param() findBusownerDto: findbusownerForm):any
-    {
-        return this.employeeService.findbusowner(findBusownerDto);
-    }
-
-    /////////////////////////////////
     //add customer
     @Post('addcustomer')
     @UseGuards(sessionGuard)
@@ -139,12 +120,12 @@ export class EmployeeController {
     }
     //Managing bus provider
     //Finding bus provider
-    // @Get("findbusprovider/:id")
-    // @UsePipes(new ValidationPipe())
-    // findbusprovider(@Param() findBusProviderDTO: findcustomerForm):any
-    // {
-    //     return this.employeeService.findbusprovider(findBusProviderDTO)
-    // }
+    @Get("findbusprovider/:id")
+    @UsePipes(new ValidationPipe())
+    findbusprovider(@Param() findBusProviderDTO: findcustomerForm):any
+    {
+        return this.employeeService.findbusprovider(findBusProviderDTO)
+    }
     //Adding bus provider
     @Post('addbusowner')
     @UsePipes(new ValidationPipe())
@@ -179,10 +160,5 @@ export class EmployeeController {
     sendmail()
     {
         return this.employeeService.sendmail()
-    }
-
-    @Get('/getimage/:name')
-    getImages(@Param('name') name, @Res() res) {
-      res.sendFile(name,{ root: './uploads' })
     }
 }

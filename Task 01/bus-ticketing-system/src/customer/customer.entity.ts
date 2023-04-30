@@ -26,5 +26,5 @@ export class customerEntity
     profile: string;
 
     @ManyToOne(()=>employeeEntity, (employeeEntity)=>employeeEntity.customers)
-    employee: employeeEntity;
+    employee: employeeEntity
 }

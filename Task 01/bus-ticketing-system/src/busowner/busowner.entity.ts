@@ -1,5 +1,4 @@
-import { employeeEntity } from "src/employee/employee.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class busownerEntity
@@ -21,7 +20,4 @@ export class busownerEntity
 
     @Column()
     address: string;
-
-    @ManyToOne(()=>employeeEntity, (employeeEntity)=>employeeEntity.busowners)
-    employee: employeeEntity
 }
