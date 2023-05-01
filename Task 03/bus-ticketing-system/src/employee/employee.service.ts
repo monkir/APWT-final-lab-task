@@ -114,10 +114,10 @@ export class EmployeeService {
         // return "Employee is updating a customer with id: "+updateCustomerDTO.id
         // +" name: "+updateCustomerDTO.name+" email: "+updateCustomerDTO.email
         // +" phone: "+updateCustomerDTO.phone;
-        const pass = updateCustomerDTO.password
-       const salt = await bcrypt.genSalt();
-        const hash = await bcrypt.hash(pass,salt);
-        updateCustomerDTO.password=hash;
+    //     const pass = updateCustomerDTO.password
+    //    const salt = await bcrypt.genSalt();
+    //     const hash = await bcrypt.hash(pass,salt);
+    //     updateCustomerDTO.password=hash;
         // await this.mailerService.sendMail({
         //     to: updateCustomerDTO.email,
         //     subject: 'Updated Password of your account in Bus Ticketing System',

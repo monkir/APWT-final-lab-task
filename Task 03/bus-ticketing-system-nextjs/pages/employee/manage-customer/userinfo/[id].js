@@ -10,7 +10,7 @@ export default function mngCustomers({data}) {
     <div>
       <Link href={"/employee/manage-customer/add-customer"}>Add Customer</Link>
       
-      <ul>
+      <ul key={data.id}>
         <li>ID: {data.id}</li>
         <li>Name: {data.name}</li>
         <li>Email: {data.email}</li>

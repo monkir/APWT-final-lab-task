@@ -125,7 +125,7 @@ export class EmployeeController {
     async updatecustomer(@Body() updateCustomerDTO:updateCustomerForm, @Session() session):Promise<any>
     {
         updateCustomerDTO.employee=session.userid;
-        updateCustomerDTO.id=await this.employeeService.CustgetIDbyEmail(updateCustomerDTO.email);
+        //updateCustomerDTO.id=await this.employeeService.CustgetIDbyEmail(updateCustomerDTO.email);
         console.log(session.userid)
         console.log(updateCustomerDTO.id)
         return this.employeeService.updatecustomer(updateCustomerDTO)

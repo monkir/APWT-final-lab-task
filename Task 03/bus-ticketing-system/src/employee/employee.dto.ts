@@ -68,7 +68,7 @@ export class addCustomerForm
 }
 export class updateCustomerForm
 {
-    // @IsNotEmpty()
+    @IsNotEmpty()
     id: string;
 
     @IsNotEmpty()
@@ -85,11 +85,11 @@ export class updateCustomerForm
     @IsNotEmpty()
     address: string;
 
-    @IsNotEmpty()
-    password: string;
+    // @IsNotEmpty()
+    // password: string;
 
-    @IsNotEmpty()
-    profile:string;
+    // @IsNotEmpty()
+    // profile:string;
 
     employee:number;
 }

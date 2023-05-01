@@ -31,11 +31,11 @@ export default function mngCustomers({data}) {
               {/* <td>{item.account}</td>
               <td>{item.address}</td>
               <td>{item.address}</td> */}
-              <td>{item.profile}</td>
-              <td><Link href={"#"}>Edit</Link></td>
-              <td><Link href={"#"}>Block</Link></td>
+              {/* <td>{item.profile}</td> */}
+              <td><Link href={"/employee/manage-customer/edituser/"+item.id}>Edit</Link></td>
+              {/* <td><Link href={"#"}>Block</Link></td> */}
               <td><Link href={"#"}>Delete</Link></td>
-              <td><Link href={"/employee/manage-customer/user/"+item.id}>View</Link></td>
+              <td><Link href={"/employee/manage-customer/userinfo/"+item.id}>View</Link></td>
             </tr>
             </>
           ))}
