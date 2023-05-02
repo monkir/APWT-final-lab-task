@@ -26,7 +26,7 @@ export default function editcustomer({data1}) {
     }));
     console.log("hi");
   }
-  
+  const [success, setSuccess] = useState('')
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   
   const onSubmit = async data => {
@@ -50,11 +50,13 @@ export default function editcustomer({data1}) {
         content,
       );
       console.log(response);
+      setSuccess("Customer is edited successfully")
       reset();
     }
     catch(e){
       console.log("error");
       console.log(e);
+      setSuccess(e.response.data.message);
     }
   }
   // const onSubmit = data => console.log(data);
@@ -67,6 +69,14 @@ export default function editcustomer({data1}) {
     <div>
       <Link href={"#"}>Index</Link>
     </div>
+    <ul key={data1.id}>
+        <li>ID: {data1.id}</li>
+        <li>Name: {data1.name}</li>
+        <li>Email: {data1.email}</li>
+        <li>Phone: {data1.phone}</li>
+        <li>Address: {data1.address}</li>
+      </ul>
+    <h1>{success}</h1>
     <form onSubmit={handleSubmit(onSubmit)}>
       <input type="text" name="name" placeholder="name" onChange={e => console.log("e.target.value")} {...register("name", {required: {value: true, message: "Name is required"}})} />
       <span>{errors.name?.message}</span><br/>

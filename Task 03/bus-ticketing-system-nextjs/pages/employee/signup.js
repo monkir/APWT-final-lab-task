@@ -4,8 +4,10 @@ import Link from "next/link"
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import axios from "axios";
+import { useState } from "react";
 
 export default function mngCustomers() {
+  const [success, setSuccess] = useState('');
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = async data => {
     const formData= new FormData();
@@ -32,6 +34,7 @@ export default function mngCustomers() {
     catch(e){
       console.log("error");
       console.log(e);
+      setSuccess(e.response.data.message);
     }
 
   }

@@ -1,11 +1,16 @@
 import MyLayout from "../../component/layout"
 import Header from "../../component/header"
 import Link from "next/link"
+import axios from "axios"
 
 export default function mngCustomers({data}) {
+  const deletecustomer = async (id) =>{
+    const response = await axios.delete(
+      "http://localhost:3000/employee/deletecustomer/"+id
+    )
+  }
   return (
     <>
-    
     <MyLayout title="Manage Customers"/>
     <div>
       <Link href={"/employee/manage-customer/add-customer"}>Add Customer</Link>
@@ -34,7 +39,9 @@ export default function mngCustomers({data}) {
               {/* <td>{item.profile}</td> */}
               <td><Link href={"/employee/manage-customer/edituser/"+item.id}>Edit</Link></td>
               {/* <td><Link href={"#"}>Block</Link></td> */}
-              <td><Link href={"#"}>Delete</Link></td>
+              {/* <td><button onClick={()=>deletecustomer(item.id)}>Delete</button></td> */}
+              {/* <td><Link href={"#"}>Delete</Link></td> */}
+              <td><Link href={"/employee/manage-customer/deleteuser/"+item.id}>Delete</Link></td>
               <td><Link href={"/employee/manage-customer/userinfo/"+item.id}>View</Link></td>
             </tr>
             </>

@@ -3,8 +3,10 @@ import Header from "../../component/header"
 import Link from "next/link"
 import { useForm } from 'react-hook-form';
 import axios from "axios";
+import { useState } from "react";
 
 export default function addCustomers() {
+  const [success, setSuccess] = useState('');
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const onSubmit = async data => {
     const formData= new FormData();
@@ -26,6 +28,7 @@ export default function addCustomers() {
           }
         }
       );
+      setSuccess("Customer is added successfully")
       reset();
       console.log(response);
     }
@@ -43,6 +46,7 @@ export default function addCustomers() {
     <div>
       <Link href={"#"}>Index</Link>
     </div>
+    <h1>{success}</h1>
     <form onSubmit={handleSubmit(onSubmit)} method="post" encType="multipart/form-data">
       <input type="text" placeholder="name" {...register("name", {required: {value: true, message: "Name is required"}})} />
       <span>{errors.name?.message}</span><br/>
