@@ -149,13 +149,11 @@ export class EmployeeService {
     }
     updatebusowner(updatebusownerDTO):any
     {
-        return "Employee is updating a bus owner with name: "+updatebusownerDTO.name
-        +" brta-license: "+updatebusownerDTO.brtalicense
-        +" where id: "+updatebusownerDTO.id
+        return this.custRepo.update(updatebusownerDTO.id, updatebusownerDTO)
     }
-    deletebusowner(deleteCustomerDTO):any
+    deletebusowner(deleteBusOwnerDTO):any
     {
-        return "Employee is deleting a bus owner with id: "+deleteCustomerDTO.id
+        return this.busRepo.delete(deleteBusOwnerDTO.id)
     }
     async sendmail():Promise<any>
     {

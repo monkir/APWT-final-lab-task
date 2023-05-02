@@ -37,7 +37,7 @@ export class findcustomerForm
 export class findbusownerForm 
 {   
    @IsNotEmpty()
-   @IsInt()
+   @IsNumberString()
     id: string;
 }
 export class findBusProviderForm 
@@ -134,13 +134,13 @@ export class updatebusownerForm
 export class deletebusownerForm
 {
     @IsNotEmpty()
+    @IsNumberString()
     id: string;
 
-    @IsNotEmpty()
-    brtalicense: string;
 }
 export class deleteBusOwnerForm
 {
     @IsNotEmpty()
+    @IsNumberString()
     id: string;
 }
