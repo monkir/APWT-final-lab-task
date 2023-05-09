@@ -7,7 +7,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { busownerEntity } from 'src/busowner/busowner.entity';
 import { customerEntity } from 'src/customer/customer.entity';
-import { Repository } from 'typeorm';
+import { ForbiddenTransactionModeOverrideError, Repository } from 'typeorm';
 import { employeeEntity } from './employee.entity';
 import * as bcrypt from 'bcrypt';
 import { randomInt } from 'crypto';
@@ -33,7 +33,13 @@ export class EmployeeService {
         const salt = await bcrypt.genSalt();
         const hash = await bcrypt.hash(signupDTO.password,salt);
         signupDTO.password=hash;
-        return this.empRepo.insert(signupDTO)
+        try{
+            return this.empRepo.insert(signupDTO)
+        }catch(e){
+            console.log(e);
+            return {message: "error"};
+        }
+        
 
     }
     async login(loginDTO):Promise<any>
@@ -88,12 +94,8 @@ export class EmployeeService {
     }
     async addcustomer(addCustomerDTO):Promise<any>
     {
-        /*
-        return "Employee is adding a customer with name: "+addCustomerDTO.name
-        +" email: "+addCustomerDTO.email+" phone: "+addCustomerDTO.phone;
-        */
-       const pass = this.makepass(8)
-       const salt = await bcrypt.genSalt();
+        const pass = this.makepass(8)
+        const salt = await bcrypt.genSalt();
         const hash = await bcrypt.hash(pass,salt);
         addCustomerDTO.password=hash;
         // await this.mailerService.sendMail({
@@ -107,7 +109,22 @@ export class EmployeeService {
         //         'Your address is: '+addCustomerDTO.address+
         //         'Your employee is: '+addCustomerDTO.employee
         // })
-        return this.custRepo.insert(addCustomerDTO)
+        try{
+            console.log("e");
+            return {
+                message: "success",
+                rowdata: await this.custRepo.insert(addCustomerDTO)
+            }
+        }
+        catch(e){
+            console.log("22");
+            console.log(e);
+            return {
+                message: "failed",
+                error: e.detail
+            }
+        }
+        
     }
     async updatecustomer(updateCustomerDTO):Promise<any>
     {

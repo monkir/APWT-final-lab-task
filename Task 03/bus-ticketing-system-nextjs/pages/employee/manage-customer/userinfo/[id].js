@@ -25,9 +25,9 @@ export default function mngCustomers({data}) {
   
 
 export async function getServerSideProps(context) {
-    const id=context.params.id;
+    const pid=context.params.id;
    
-       const response = await axios.get('http://localhost:3000/employee/findcustomer/'+id);
+       const response = await axios.get('http://localhost:3000/employee/findcustomer/'+pid);
       // const response = await fetch('http://localhost:3000/employee/findcustomer/'+id);
        const data = await response.data;
       

@@ -7,6 +7,7 @@ import { useState } from "react";
 
 export default function addCustomers() {
   const [success, setSuccess] = useState('');
+  // setSuccess(window.sessionStorage?.getItem("email"));
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const onSubmit = async data => {
     const formData= new FormData();
@@ -28,8 +29,14 @@ export default function addCustomers() {
           }
         }
       );
-      setSuccess("Customer is added successfully")
-      reset();
+      if(response.data.message=="success"){
+        setSuccess("Customer is added successfully")
+      }
+      else if(response.data.message=="failed"){
+        setSuccess(response.data.error)
+      }
+      
+      // reset();
       console.log(response);
     }
     catch(e){

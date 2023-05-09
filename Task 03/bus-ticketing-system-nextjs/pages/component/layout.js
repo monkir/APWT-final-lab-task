@@ -16,6 +16,7 @@ export default function MyLayout(props)
         <Link href="#"> Manage Employee</Link>|
         <Link href="/employee/signup"> Emplyee signup</Link>|
         <Link href="/employee/login"> Emplyee login</Link>|
+        <Link href="/employee/logout"> Emplyee logout</Link>|
         <hr/>
         
         </nav>

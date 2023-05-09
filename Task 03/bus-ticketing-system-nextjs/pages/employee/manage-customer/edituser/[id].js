@@ -89,11 +89,9 @@ export default function editcustomer({data1}) {
   
 
 export async function getServerSideProps(context) {
-    const id=context.params.id;
-   
-       const response = await axios.get('http://localhost:3000/employee/findcustomer/'+id);
-      // const response = await fetch('http://localhost:3000/employee/findcustomer/'+id);
-       const data1 = await response.data;
-      
-   return { props: { data1 } }
-   }
+  const id=context.params.id;
+  const response = await axios.get('http://localhost:3000/employee/findcustomer/'+id);
+  // const response = await fetch('http://localhost:3000/employee/findcustomer/'+id);
+  const data1 = await response.data;
+  return { props: { data1 } }
+}

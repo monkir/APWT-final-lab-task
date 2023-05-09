@@ -17,7 +17,7 @@ export class EmployeeController {
     //index
     @Get()
     find():any{
-        //return this.employeeService.getIndex()
+        return this.employeeService.getIndex()
         return "Welcome to employee panel"
     }
     @Post('signup')
@@ -52,11 +52,11 @@ export class EmployeeController {
             session.email = loginDTO.email;
             session.userid=(await this.employeeService.EmpgetIDbyEmail(loginDTO.email)).toString()
             session.user='admin'
-            return {'Message': 'Successfully Logged in'};
+            return {message: 'success'};
         }
         else
         {
-            return {'Message': 'Invalid Creditential'}
+            return {message: 'failed'}
         }
     }
     //Managing Customers
@@ -183,6 +183,24 @@ export class EmployeeController {
 
     @Get('/getimage/:name')
     getImages(@Param('name') name, @Res() res) {
-      res.sendFile(name,{ root: './uploads' })
+        // try{
+        //     res.sendFile(name,{ root: './uploads' });
+        // }
+        // catch{
+        //     res.sendFile("image-not-found.png",{ root: './uploads' });
+        // }
+        const fs = require('fs')
+        const path = './uploads/'+name;
+        try {
+            if (fs.existsSync(path)) {
+                res.sendFile(name,{ root: './uploads' });
+            }
+            else{
+                res.sendFile("image-not-found.png",{ root: './uploads' });
+            }
+        } catch(err) {
+            res.sendFile("image-not-found.png",{ root: './uploads' });
+        }
+      
     }
 }

@@ -17,11 +17,11 @@ export default function mngCustomers() {
     formData.append("phone", data.phone);
     formData.append("address", data.address);
     formData.append("password", data.password);
-    formData.append("profile", data.profile[0]);
+    formData.append("filename", data.profile[0]);
 
     try{
       const response=await axios.post(
-        "http://localhost:3000/employee/addcustomer",
+        "http://localhost:3000/employee/signup",
         formData, 
         {
           headers: {
@@ -34,7 +34,7 @@ export default function mngCustomers() {
     catch(e){
       console.log("error");
       console.log(e);
-      setSuccess(e.response.data.message);
+      // setSuccess(e.response.data.message);
     }
 
   }

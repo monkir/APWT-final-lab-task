@@ -1,10 +1,7 @@
 import { IsNotEmpty, IsInt, Length, IsEmail, IsNumberString } from "class-validator";
 
 export class signupForm 
-{  
-    @IsNotEmpty()
-    @Length(8)
-    password: string;
+{
 
     @IsNotEmpty()
     name: string;
@@ -17,6 +14,10 @@ export class signupForm
 
     @IsNotEmpty()
     address: string;
+      
+    @IsNotEmpty()
+    @Length(8)
+    password: string;
     
     filename: string;
 }
